@@ -1,0 +1,26 @@
+﻿@model M12_HW.Models.Product
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Create Product";
+}
+<h2>Create Product</h2>
+
+<form enctype="multipart/form-data" asp-controller="Product" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input name="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Price">Price</label>
+        <input name="Price" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea name="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageData">Product photo:</label>
+        <input type="file" name="ImageData" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

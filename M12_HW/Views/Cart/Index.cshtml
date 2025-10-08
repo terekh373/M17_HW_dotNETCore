@@ -1,0 +1,48 @@
+﻿@model IEnumerable<M12_HW.Models.Cart>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Cart";
+}
+
+<h2>Your Cart</h2>
+
+<a asp-controller="Home"
+   asp-action="Index"
+   class="btn btn-success">Home page</a>
+
+@if (!Model.Any())
+{
+    <p>Cart is empty.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>@(item.Product.Price* item.Quantity)</td>
+                    <td>
+                        <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-danger">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form asp-controller="Cart" asp-action="Clear" method="post" style="display:inline">
+        <button type="submit" class="btn btn-warning">Clear Cart</button>
+    </form>
+}

@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home Page";
+}
+<h1>Home Page</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Hello, @User.Identity.Name</h1>
+    <a class="btn btn-dark"
+       asp-controller="User"
+       asp-action="Logout">Logout</a>
+
+    @if (User.IsInRole("admin"))
+    {
+        <a class="btn btn-dark"
+           asp-controller="User"
+           asp-action="CreateRole">Create Role</a>
+        <a class="btn btn-dark"
+           asp-controller="User"
+           asp-action="AssignRole">Assign Role</a>
+    }
+}
+else
+{
+    <a class="btn btn-dark"
+       asp-controller="User"
+       asp-action="Register">Register</a>
+    <a class="btn btn-dark"
+       asp-controller="User"
+       asp-action="Login">Login</a>
+}
+
+<a class="btn btn-dark" 
+    asp-controller="Product" 
+    asp-action="Index"
+>Read Products</a>
+<a class="btn btn-dark"
+   asp-controller="Cart"
+   asp-action="Index">Show Cart</a>
